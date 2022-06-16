@@ -1,0 +1,7 @@
+onnxruntime    1.11.0
+opencv-python  4.5.5.64
+paho-mqtt      1.6.1
+Pillow         8.1.2
+pyserial       3.5
+tflite-runtime
+

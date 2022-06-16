@@ -1,0 +1,11 @@
+chainsaw
+clock-ticking
+crowing-rooster
+crying-baby
+dog-barking
+fire-crackling
+glass-breaking
+helicopter
+rain
+sea-waves
+sneezing
