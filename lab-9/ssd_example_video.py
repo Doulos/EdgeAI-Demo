@@ -91,7 +91,7 @@ label2string = \
 
 
 def detect_from_camera():
-    print ('Inside loop of detect from camera')
+    #print ('Inside loop of detect from camera')
 
     cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)
@@ -109,13 +109,13 @@ def detect_from_camera():
                       img.shape[2])  # (1, 300, 300, 3)
         img = np.asarray(img)
         img = img.astype(np.uint8)
-        print ('img', img)
+        #print ('img', img)
 
     # Overview of Object Detection: https://www.tensorflow.org/lite/examples/object_detection/overview
     # Load pretrained model:https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/default/1
      
         interpreter = tflite.Interpreter(
-            model_path="/home/pi/edgeAI/lab-9/ssd_mobilenet_v1.tflite")
+            model_path="/home/pi/EdgeAI-Demo/lab-9/ssd_mobilenet_v1.tflite")
         
         interpreter.allocate_tensors()
         input_details = interpreter.get_input_details()
