@@ -55,14 +55,19 @@ def draw_objects(draw, objs, labels):
 def main():
   parser = argparse.ArgumentParser(
       formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-  parser.add_argument('-m', '--model', required=True,
+  parser.add_argument('-m', '--model', 
+                       default='ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite',
                       help='File path of .tflite file')
-  parser.add_argument('-i', '--input', required=True,
+  parser.add_argument('-i', '--input', 
+                       default='dog.jpg',
                       help='File path of image to process')
-  parser.add_argument('-l', '--labels', help='File path of labels file')
+  parser.add_argument('-l', '--labels', 
+                       default='coco_labels.txt',
+                       help='File path of labels file')
   parser.add_argument('-t', '--threshold', type=float, default=0.4,
                       help='Score threshold for detected objects')
   parser.add_argument('-o', '--output',
+                      default='dog_detected.jpg',
                       help='File path for the result image with annotations')
   parser.add_argument('-c', '--count', type=int, default=5,
                       help='Number of times to run inference')
@@ -84,7 +89,7 @@ def main():
     interpreter.invoke()
     inference_time = time.perf_counter() - start
     objs = detect.get_objects(interpreter, args.threshold, scale)
-    print('%.2f ms' % (inference_time * 1000))
+    print(f'{(inference_time * 1000):0.3f}')
 
   print('-------RESULTS--------')
   if not objs:

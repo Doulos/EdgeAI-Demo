@@ -18,15 +18,6 @@ To run this code, you must attach an Edge TPU attached to the host and
 install the Edge TPU runtime (`libedgetpu.so`) and `tflite_runtime`. For
 device setup instructions, see coral.ai/docs/setup.
 
-Example usage:
-
-bash examples/install_requirements.sh detect_image.py
-
-python3 examples/detect_image.py \
-  --model test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite \
-  --labels test_data/coco_labels.txt \
-  --input test_data/grace_hopper.bmp \
-  --output ${HOME}/grace_hopper_processed.bmp
 """
 
 #Reference code : https://github.com/google-coral/examples-camera/blob/master/opencv/detect.py
@@ -93,15 +84,13 @@ def main():
 		image = np.asarray(image)
 
 		print('----INFERENCE TIME----')
-		print('Note: The first inference is slow because it includes',
-		'loading the model into Edge TPU memory.')
 		for _ in range(args.count):
 			start = time.perf_counter()
 			common.set_input(interpreter, image)
 			interpreter.invoke()
 			inference_time = time.perf_counter() - start
 			objs = detect.get_objects(interpreter, args.threshold, (0.12,0.21))  # Resize to 300 pixels
-			print('%.2f ms' % (inference_time * 1000))
+			print(f'{(inference_time * 1000):0.3f} ms')
 
 		print('-------RESULTS--------')
 		if not objs:

@@ -115,7 +115,7 @@ def detect_from_camera():
     # Load pretrained model:https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/default/1
      
         interpreter = tflite.Interpreter(
-            model_path="/home/pi/EdgeAI-Demo/lab-9/ssd_mobilenet_v1.tflite")
+            model_path="ssd_mobilenet_v1.tflite")
         
         interpreter.allocate_tensors()
         input_details = interpreter.get_input_details()

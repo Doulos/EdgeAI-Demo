@@ -148,7 +148,7 @@ def detect_from_camera():
     # Load pretrained model:https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/default/1
      
         interpreter = tflite.Interpreter(
-            model_path="/home/pi/edgeAI/lab-9/test_data/ssd_mobilenet_v1.tflite")
+            model_path="ssd_mobilenet_v1.tflite")
         
         interpreter.allocate_tensors()
         input_details = interpreter.get_input_details()
@@ -189,14 +189,14 @@ def detect_from_camera():
                 y0 = int(box[0] * img_org.shape[0])
                 x1 = int(box[3] * img_org.shape[1])
                 y1 = int(box[2] * img_org.shape[0])
-                box = box.astype(np.int)
+                box = box.astype(np.int32)
                 cv2.rectangle(img_org, (x0, y0), (x1, y1), (255, 0, 0), 2)
             #cv2.rectangle(img_org, (x0, y0), (x0 + 100, y0 - 30), (255, 0, 0), -1)
                 cv2.putText(img_org, str(label2string[labels[0][i]]), (x0, y0),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         cv2.imwrite('object-detected.jpg', img_org)
-        print(f'time for inference is {stop-start:.2f} seconds')
+        print(f'time for inference is {(stop-start)*1000:.3f} ms')
     cap.release()
 
 
