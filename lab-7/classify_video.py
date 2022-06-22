@@ -86,12 +86,12 @@ def run(model_file: str, num_threads:int, label_file: str, input_mean, input_std
 
 		for i in top_k:
 			if floating_model:
-				print(f'{float(results[i])}: {labels[i]}')
+				print(f'{results[i]:0.3f}: {labels[i]}')
 			else:
 				print(f'{float(results[i])}: {labels[i]}'.format(float(results[i] / 255.0), labels[i]))
 				
 		
-		print(f'time: {(stop_time-start_time)*1000 }ms')
+		print(f'time: {(stop_time-start_time)*1000:0.3f}ms')
 
         # Stop the program if the ESC key is pressed.
 		if cv2.waitKey(1) == 27:
