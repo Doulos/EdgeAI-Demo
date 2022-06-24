@@ -151,7 +151,7 @@ def detect_from_camera():
                 y0 = int(box[0] * img_org.shape[0])
                 x1 = int(box[3] * img_org.shape[1])
                 y1 = int(box[2] * img_org.shape[0])
-                box = box.astype(np.int)
+                box = box.astype(np.int32)
                 cv2.rectangle(img_org, (x0, y0), (x1, y1), (255, 0, 0), 2)
             #cv2.rectangle(img_org, (x0, y0), (x0 + 100, y0 - 30), (255, 0, 0), -1)
                 cv2.putText(img_org, str(label2string[labels[0][i]]), (x0, y0),
