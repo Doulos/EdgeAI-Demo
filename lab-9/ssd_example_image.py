@@ -91,7 +91,7 @@ label2string = \
 
 
 def detect_from_image():
-    # prepara input image
+    # prepare input image
     start = time.time()
     img_org = cv2.imread('car-road.jpg')
     img = cv2.cvtColor(img_org, cv2.COLOR_BGR2RGB)
