@@ -30,8 +30,8 @@ void setup() {
   Serial.print(IMU.accelerationSampleRate());
   Serial.println(" Hz");
   Serial.println();
-  Serial.println("Acceleration in G's");
-  Serial.println("X\tY\tZ");
+  Serial.println("Acceleration in g's");
+  Serial.println("X,Y,Z");
 }
 
 void loop() {
@@ -41,9 +41,9 @@ void loop() {
     IMU.readAcceleration(x, y, z);
 
     Serial.print(x);
-    Serial.print('\t');
+    Serial.print(',');
     Serial.print(y);
-    Serial.print('\t');
+    Serial.print(',');
     Serial.println(z);
   }
 }
