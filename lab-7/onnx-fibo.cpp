@@ -1,3 +1,6 @@
+// This ONNX model takes 3 floating point inputs 
+// Compile Model using $g++ onnx-fibo.cpp -o onnx-fibo -lonnxruntime
+
 #include <onnxruntime/onnxruntime_cxx_api.h>
 #include <iostream>
 
@@ -8,11 +11,11 @@ int main()
 	Ort::Session session(nullptr);
 
    // create session
-    session = Ort::Session(env, "/home/..../fibonacci.onnx", 		Ort::SessionOptions{ nullptr });
+    session = Ort::Session(env, "/home/..../fibonacci.onnx", Ort::SessionOptions{ nullptr });
 
    
     // define shape
-    const std::array<int64_t, 2> inputShape = { 1, 3  };
+    const std::array<int64_t, 2> inputShape = { 1, 3 };
     const std::array<int64_t, 2> outputShape = { 1, 2 };
 
     // define array
@@ -21,11 +24,11 @@ int main()
 
 // define Tensor
 
-auto memory_info = Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, 			OrtMemTypeCPU);
+auto memory_info = Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator,OrtMemTypeCPU);
 
-auto inputTensor = Ort::Value::CreateTensor<float>(memory_info, 			input.data(), input.size(), 					inputShape.data(), inputShape.size());
+auto inputTensor = Ort::Value::CreateTensor<float>(memory_info, input.data(), input.size(), inputShape.data(), inputShape.size());
 
-auto outputTensor = Ort::Value::CreateTensor<float>(memory_info, 			results.data(), results.size(), 					outputShape.data(), outputShape.size());
+auto outputTensor = Ort::Value::CreateTensor<float>(memory_info, results.data(), results.size(), outputShape.data(), outputShape.size());
 
 
 // define names
@@ -40,7 +43,7 @@ const std::array<const char*, 1> outputNames = {outputName };
 // run inference
 
 try {
-     session.Run(runOptions, inputNames.data(), &inputTensor, 1, 				outputNames.data(), &outputTensor, 1);
+     session.Run(runOptions, inputNames.data(), &inputTensor, 1, outputNames.data(), &outputTensor, 1);
     }
 catch (Ort::Exception& e) {
      std::cout << e.what() << std::endl;

@@ -1,9 +1,11 @@
-#include <stdio.h>
-#include "tensorflow/lite/interpreter.h"
+// The model takes 3 floating point inputs and provides two floating point outputs
+// Verify this using Netron
+// Compile model using $g++ fibonacci.cpp -o fibo -ltensorflow-lite -ldl
 
-#include "tensorflow/lite/kernels/register.h"
-#include "tensorflow/lite/model.h"
-#include "tensorflow/lite/tools/gen_op_registration.h"
+#include <iostream>
+#include <tensorflow/lite/interpreter.h>
+#include <tensorflow/lite/kernels/register.h>
+#include <tensorflow/lite/model.h>
 #include <iostream>
 
 int main(){
@@ -20,37 +22,23 @@ int main(){
     tflite::InterpreterBuilder(*model.get(), resolver)(&interpreter);
 
 
-    // Resize input tensors, if desired.
     interpreter->AllocateTensors();
 		
-	
-	float* input0 = interpreter->typed_input_tensor<float>(0)[0] ;
-	float* input0 = interpreter->typed_input_tensor<float>(0)[1] ;
-	float* input0 = interpreter->typed_input_tensor<float>(0)[2] ;
-		
-	# const std::vector<int> inputs = interpreter->inputs();
-    #const std::vector<int> outputs = interpreter->outputs();
+    float x[] = {34.0, 55.0, 89.0};
 	
 	
-
-    //std::cout << "input " <<  inputs[0] << "\r\n";
-    std::cout << "number of inputs " <<  interpreter->inputs().size() <<"\r\n";
-    std::cout << "number of outputs " << interpreter->outputs().size() << "\r\n";
+	float *inputTensor = interpreter->typed_input_tensor<float>(0);
 	
-	std::cout << "input(0) name: " <<  interpreter->GetInputName(0) << "\r\n";
-	std::cout << "input(1) name: " <<  interpreter->GetInputName(1) << "\r\n";
-	std::cout << "input(2) name: " <<  interpreter->GetInputName(2) << "\r\n";
-    	std::cout << "output(0) name: " << interpreter->GetOutputName(0) << "\r\n";
-	std::cout << "output(1) name: " << interpreter->GetOutputName(1) << "\r\n";
+			
+	memcpy (inputTensor, x, sizeof(x));
 	
-		
     interpreter->Invoke();
 	
-    float* output0 = interpreter->typed_output_tensor<float>(0)[0];
-	float* output1 = interpreter->typed_output_tensor<float>(0)[1];
+    float *output0 = interpreter->typed_output_tensor<float>(0);
+    
 
-    printf("Result is: %f\n", *output0);
-	printf("Result is: %f\n", *output1);
+    printf("Result is: %f\n", output0[0]);
+	printf("Result is: %f\n", output0[1]);
 
     return 0;
 
