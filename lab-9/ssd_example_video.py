@@ -94,6 +94,8 @@ def detect_from_camera():
     #print ('Inside loop of detect from camera')
 
     cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L)
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440)
     while cap.isOpened():

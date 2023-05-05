@@ -26,6 +26,10 @@ def run(model_file: str, num_threads:int, label_file: str, input_mean, input_std
 
 
 	cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L)
+	"""Uncomment the next line if you observe global /io/opencv/modules/videoio/src/cap_v4l.cpp (1013) tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout.
+     ERROR: Unable to read from webcam. Please verify your webcam settings."""
+
+	#cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 	cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)
 	cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1440)
 
