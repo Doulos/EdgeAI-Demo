@@ -1,6 +1,6 @@
 onnxruntime   
 opencv-python 
-paho-mqtt     
+paho-mqtt==1.6.1     
 Pillow        
 pyserial      
 tflite-runtime
