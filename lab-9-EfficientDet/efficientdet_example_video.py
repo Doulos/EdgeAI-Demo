@@ -1,8 +1,7 @@
 import time
 import cv2
 
-import tflite_runtime.interpreter as tflite
-
+from ai_edge_litert.interpreter import Interpreter
 import numpy as np
 
 label2string = \
@@ -114,7 +113,7 @@ def detect_from_camera():
     # Overview of Object Detection: https://www.tensorflow.org/lite/examples/object_detection/overview
     # Load pretrained model:https://tfhub.dev/tensorflow/lite-model/efficientdet/lite0/detection/metadata/1
      
-        interpreter = tflite.Interpreter(
+        interpreter = Interpreter(
             model_path="model_efficientdet.tflite")
         
         interpreter.allocate_tensors()
