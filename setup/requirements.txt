@@ -3,5 +3,5 @@ opencv-python
 paho-mqtt==1.6.1     
 Pillow        
 pyserial      
-tflite-runtime
+ai-edge-litert
 
