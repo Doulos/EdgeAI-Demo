@@ -1,7 +1,7 @@
 import time
 import cv2
 
-import tflite_runtime.interpreter as tflite
+from ai_edge_litert.interpreter import Interpreter
 
 import numpy as np
 
@@ -103,7 +103,7 @@ def detect_from_image():
     # Overview of Object Detection: https://www.tensorflow.org/lite/examples/object_detection/overview
     # Load pretrained model:https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/default/1
      
-    interpreter = tflite.Interpreter(
+    interpreter = Interpreter(
         model_path="ssd_mobilenet_v1.tflite")
         
     interpreter.allocate_tensors()
