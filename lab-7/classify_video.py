@@ -16,7 +16,7 @@ import sys
 
 import numpy as np
 from PIL import Image
-import tflite_runtime.interpreter as tflite
+from ai_edge_litert.interpreter import Interpreter
 
 import cv2
 
@@ -47,7 +47,7 @@ def run(model_file: str, num_threads:int, label_file: str, input_mean, input_std
 		rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     # Create TensorImage from the RGB image
-		interpreter = tflite.Interpreter(
+		interpreter = Interpreter(
 		model_path=model_file, num_threads=num_threads)
 		interpreter.allocate_tensors()
 
