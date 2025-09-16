@@ -17,7 +17,6 @@ import sys
 import numpy as np
 from PIL import Image
 from ai_edge_litert.interpreter import Interpreter
-
 import cv2
 
 

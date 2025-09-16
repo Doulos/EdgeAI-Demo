@@ -23,7 +23,7 @@ import time
 
 import numpy as np
 from PIL import Image
-import tflite_runtime.interpreter as tflite
+from ai_edge_litert.interpreter import Interpreter
 import cv2
 
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
   args = parser.parse_args()
   capture_image()
 
-  interpreter = tflite.Interpreter(
+  interpreter = Interpreter(
       model_path=args.model_file, num_threads=args.num_threads)
   interpreter.allocate_tensors()
 
