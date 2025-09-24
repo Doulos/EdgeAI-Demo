@@ -14,6 +14,7 @@
   This example code is in the public domain.
 */
 
+#include <Arduino_HTS221.h>
 #include <Arduino_LSM9DS1.h>
 
 void setup() {
@@ -25,6 +26,13 @@ void setup() {
     Serial.println("Failed to initialize IMU!");
     while (1);
   }
+     
+
+  if (!HTS.begin()) {
+      Serial.println("Failed to initialize humidity temperature sensor!");
+      while (1); // Halt if sensor initialization fails
+  }
+        
 
   Serial.print("Accelerometer sample rate = ");
   Serial.print(IMU.accelerationSampleRate());
@@ -35,15 +43,28 @@ void setup() {
 }
 
 void loop() {
+
+  float temperature = HTS.readTemperature(); // Read temperature
+  float humidity = HTS.readHumidity();     // Read humidity
   float x, y, z;
 
-  if (IMU.accelerationAvailable()) {
-    IMU.readAcceleration(x, y, z);
+  Serial.print("Temperature = ");
+  Serial.print(temperature);
+  Serial.println(" °C");
 
-    Serial.print(x);
-    Serial.print(',');
-    Serial.print(y);
-    Serial.print(',');
-    Serial.println(z);
-  }
+  Serial.print("Humidity = ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  IMU.readAcceleration(x, y, z);
+
+  Serial.print("Accel_x = ");
+  Serial.println(x);
+  Serial.print("Accel_y = ");
+  Serial.println(y);
+  Serial.print("Accel_z = ");
+  Serial.println(z);
+
+  delay(100); // Wait 0.1 second before reading again
+  
 }
