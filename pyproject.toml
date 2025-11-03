@@ -1,0 +1,15 @@
+[project]
+name = "doulos"
+version = "0.1.0"
+description = "Dependencies for Doulos course: 'Essential Edge AI for Embedded Developers'"
+readme = "README.md"
+requires-python = ">=3.9,<3.10"
+dependencies = [
+    "ai-edge-litert>=2.0.2",
+    "onnxruntime==1.11.1",
+    "opencv-python>=4.6.0.66",
+    "paho-mqtt==1.6.1",
+    "pillow>=11.3.0",
+    "pyserial>=3.5",
+    "rpi-gpio==0.7.1",
+]
