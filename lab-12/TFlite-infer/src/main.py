@@ -1,3 +1,5 @@
+# Main code to demonstrate use of TFLite/LiteRT runtime
+
 from flask import Flask, jsonify
 
 import tflite_runtime.interpreter as tflite
