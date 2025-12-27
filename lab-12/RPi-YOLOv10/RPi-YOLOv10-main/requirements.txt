@@ -1,0 +1,4 @@
+numpy
+ai-edge-litert
+opencv-python-headless
+paho-mqtt==1.6.1
